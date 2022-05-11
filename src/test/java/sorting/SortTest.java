@@ -37,6 +37,13 @@ public class SortTest {
         isSorted(array);
     }
 
+    @RepeatedTest(5)
+    @DisplayName("In Place Merge Sort")
+    void testInPlaceMergeSort(){
+        MergeSort.inPlaceSort(array, 0, array.size() - 1);
+        isSorted(array);
+    }
+
     static void isSorted(ArrayList<Integer> array) {
         ArrayList<Integer> copy = new ArrayList<>(array);
         copy.sort(Comparator.naturalOrder());

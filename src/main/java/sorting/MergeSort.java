@@ -3,6 +3,35 @@ package sorting;
 import java.util.List;
 
 public class MergeSort {
+
+    public static void inPlaceSort(List<Integer> array, int start, int end){
+        if(start == end) return;
+        int mid = (start + end) / 2;
+        inPlaceSort(array, start, mid); inPlaceSort(array, mid + 1, end);
+        inPlaceMerge(array, start, mid, end);
+    }
+
+    private static void inPlaceMerge(List<Integer> array, int start, int mid, int end) {
+        int i = start; int j = mid + 1;
+        while(i <= mid && j <= end){
+            if(array.get(i) <= array.get(j)) {
+                i++;
+            } else {
+                int temp = array.get(j);
+                int index = j;
+                while(index != i) {
+                    array.set(index, array.get(index - 1));
+                    index--;
+                }
+                array.set(i, temp);
+
+                i++;
+                mid++;
+                j++;
+            }
+        }
+    }
+
     public static void sort(List<Integer> array) {
         if(array.size() == 1) return;
         int mid = array.size() / 2;
